@@ -1,4 +1,5 @@
 from bitrix24 import *
+from PIL import Image
 
 class Loader:
     def __init__(self):
@@ -7,8 +8,14 @@ class Loader:
 
 
     def run(self):
+        f = open('z.jpg', 'rb')
+        a = f.read()
 
-        print(self.bx24.callMethod('crm.product.property.fields'))
+
+        self.bx24.callMethod('crm.product.add', fields={'NAME': 'Тестовой название',
+                                                        'PRICE': 2600,
+                                                        'id': 3,
+                                                        'PREVIEW_PICTURE': a})
 
 
 if __name__ == '__main__':

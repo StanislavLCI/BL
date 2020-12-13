@@ -11,16 +11,16 @@ def getTitles(xml):
     tovar = []
     doc = minidom.parse(xml)
     node = doc.documentElement
-    books = doc.getElementsByTagName("PLANT")
+    books = doc.getElementsByTagName("food")
 
 
 
     titles = []
     for book in books:
-        titleObj = book.getElementsByTagName("COMMON")[0]
-        titleObj1 = book.getElementsByTagName("PRICE")[0]
-        titleObj2 = book.getElementsByTagName("LIGHT")[0]
-        titleObj3 = book.getElementsByTagName("AVAILABILITY")[0]
+        titleObj = book.getElementsByTagName("name")[0]
+        titleObj1 = book.getElementsByTagName("price")[0]
+        titleObj2 = book.getElementsByTagName("description")[0]
+        titleObj3 = book.getElementsByTagName("calories")[0]
         titles.append(titleObj)
         titles.append(titleObj1)
         titles.append(titleObj2)
@@ -36,14 +36,14 @@ def getTitles(xml):
     s = len(tovar) /4
     for i in range(int(s)):
         global x, y, z, m
-        print('Товар: '+tovar[y]+';', 'Цена: '+tovar[x]+';','Освещение: '+tovar[z]+';', 'Номер: '+tovar[m]+';')
+        print('Товар: '+tovar[y]+';', 'Цена: '+tovar[x]+';','Хорактеристики: '+tovar[z]+';', 'Номер: '+tovar[m]+';')
         z += 4
         x += 4
         y += 4
         m += 4
 
 if __name__ == "__main__":
-    document = 'plant_catalog.xml'
+    document = 'simple.xml'
     getTitles(document)
 
 
