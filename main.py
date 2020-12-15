@@ -8,14 +8,11 @@ class Loader:
 
 
     def run(self):
-        f = open('z.jpg', 'rb')
-        a = f.read()
-
+        f = open('z.jpg')
 
         self.bx24.callMethod('crm.product.add', fields={'NAME': 'Тестовой название',
                                                         'PRICE': 2600,
-                                                        'id': 3,
-                                                        'PREVIEW_PICTURE': a})
+                                                        'PREVIEW_PICTURE': f})
 
 
 if __name__ == '__main__':
