@@ -1,49 +1,44 @@
 import xml.dom.minidom as minidom
-x = 1
-y = 0
-z = 2
-m = 3
+
+
 def getTitles(xml):
-    """
-    Выводим все заголовки из xml.
-    """
-
-    tovar = []
     doc = minidom.parse(xml)
-    node = doc.documentElement
-    books = doc.getElementsByTagName("food")
+    recvizit = doc.getElementsByTagName('ЗначенияРеквизитов')
+
+    titles2 = []
+    for i in recvizit:
+        tit = i.getElementsByTagName("Значение")[0]
+        tit1 = i.getElementsByTagName("Значение")[3]
+        tit2 = i.getElementsByTagName("Значение")[2]
+        p1 = tit.firstChild.data
+        p2 = tit1.firstChild.data
+        p3 = tit2.firstChild.data
+        titles2.append({'Раздел': p1, 'Номер': p2, 'Наименование': p3})
+    ddd = []
+    for i in titles2:
+        if i['Раздел'] not in ddd:
+            if i['Раздел'] in 'import_files/93/931253c5-4bbe-11e5-9d25-0cc47a04d252_15dcae97-32f5-11eb-914d-0cc47a04d252.jpg#85307.3':
+                pass
+            else:
+                ddd.append(i['Раздел'])
+        if i['Раздел'] in ddd:
+            print(i['Раздел'], i['Наименование'], i['Номер'])
+
+
+document = '1.xml'
+p = getTitles(document)
 
 
 
-    titles = []
-    for book in books:
-        titleObj = book.getElementsByTagName("name")[0]
-        titleObj1 = book.getElementsByTagName("price")[0]
-        titleObj2 = book.getElementsByTagName("description")[0]
-        titleObj3 = book.getElementsByTagName("calories")[0]
-        titles.append(titleObj)
-        titles.append(titleObj1)
-        titles.append(titleObj2)
-        titles.append(titleObj3)
 
-
-    for title in titles:
-        nodes = title.childNodes
-        for node1 in nodes:
-            if node1.nodeType == node1.TEXT_NODE:
-                tovar.append(node1.data)
-
-    s = len(tovar) /4
-    for i in range(int(s)):
-        global x, y, z, m
-        print('Товар: '+tovar[y]+';', 'Цена: '+tovar[x]+';','Хорактеристики: '+tovar[z]+';', 'Номер: '+tovar[m]+';')
-        z += 4
-        x += 4
-        y += 4
-        m += 4
-
-if __name__ == "__main__":
-    document = 'simple.xml'
-    getTitles(document)
-
-
+"""f = {}
+a = {}
+for item in p:
+    name = item['Раздел']
+    value = item['Наименование']
+    nomer = item['Номер']
+    f[name] = f.get(name, []) + [value]
+    a['nomer'] = f.get(name, []) + [nomer]
+for i in f['Игрушки']:
+        print(i+ ' ' + a)
+"""

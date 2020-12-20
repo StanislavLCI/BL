@@ -1,11 +1,11 @@
 from bitrix24 import *
 from PIL import Image
+import Core
+
 
 class Loader:
     def __init__(self):
         self.bx24 = Bitrix24('https://ys-group.bitrix24.ru/rest/1/gx4teahzdry7uxaa')
-
-
 
     def run(self):
         f = open('z.jpg')
